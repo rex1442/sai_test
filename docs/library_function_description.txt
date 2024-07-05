@@ -1,0 +1,40 @@
+
+### lib 폴더 내 파일 및 디렉터리 설명
+
+#### services 폴더
+`services` 폴더는 애플리케이션의 주요 서비스 로직을 포함합니다. 이 폴더에는 음성 인식, 텍스트 음성 변환, ChatGPT 통합 등의 서비스가 포함되어 있습니다.
+
+- **chat_gpt_service.dart**
+  - **역할:** ChatGPT와의 대화를 처리합니다.
+  - **주요 함수:**
+    - `ChatGPTService(String apiKey)`: ChatGPT 서비스의 인스턴스를 생성합니다.
+    - `Future<String> sendMessage(String message)`: 메시지를 ChatGPT에 보내고 응답을 반환합니다.
+
+- **speech_service.dart**
+  - **역할:** 음성 인식 기능을 처리합니다.
+  - **주요 함수:**
+    - `Future<bool> initialize()`: 음성 인식 서비스를 초기화합니다.
+    - `void listen(Function(String) onResult, Function(String) onError)`: 사용자의 음성을 듣고 텍스트로 변환합니다.
+    - `void setStatusListener(Function(String) onStatus)`: 음성 인식 상태를 업데이트합니다.
+    - `void stop()`: 음성 인식을 중지합니다.
+
+#### providers 폴더
+`providers` 폴더는 상태 관리를 위한 로직을 포함합니다. 주로 `ChangeNotifier`를 사용하여 애플리케이션의 상태를 관리합니다.
+
+- **app_state.dart**
+  - **역할:** 애플리케이션의 상태를 관리합니다.
+  - **주요 함수:**
+    - `void listen()`: 음성 인식 서비스를 시작하고 사용자의 입력을 청취합니다.
+    - `Future<void> sendMessageToChatGPT(String message)`: 음성 인식된 텍스트를 ChatGPT에 보내고 응답을 처리합니다.
+    - `Future<void> recognizeTextFromImage(String imagePath)`: 이미지를 인식하여 텍스트를 추출합니다.
+
+#### screens 폴더
+`screens` 폴더는 애플리케이션의 UI 화면을 포함합니다. 각 화면은 Flutter의 `Widget`으로 구현되어 있습니다.
+
+- **home_screen.dart**
+  - **역할:** 애플리케이션의 메인 화면을 정의합니다.
+  - **주요 위젯:**
+    - `Scaffold`: 화면의 기본 레이아웃을 설정합니다.
+    - `AppBar`: 애플리케이션의 상단 바를 설정합니다.
+    - `Center`: 콘텐츠를 화면 중앙에 배치합니다.
+    - `Column`: 여러 위젯을 수직으로 배치합니다.
